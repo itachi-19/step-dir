@@ -1,4 +1,4 @@
-# Step-dir
+# Step-Dir
 
 A lightweight, zero-dependency terminal UI (TUI) directory navigator for Linux and macOS. Browse directories in a split-pane `curses` interface and drop back into your shell with `pwd` changed to the selected folder.
 
