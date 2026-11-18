@@ -2,6 +2,9 @@
 
 A lightweight, zero-dependency terminal UI (TUI) directory navigator for Linux and macOS. Browse directories in a split-pane `curses` interface and drop back into your shell with `pwd` changed to the selected folder.
 
+[ ](https://github.com/user-attachments/assets/b4b24a79-def0-479f-869d-9046e9fb9512)
+
+
 ## How it works
 
 A child process cannot change its parent shell's working directory directly. `sd` pairs two small files:
