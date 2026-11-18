@@ -40,28 +40,23 @@ done
 
 detect_rc_files() {
     local -a files=()
-    local shell_name
-    shell_name="$(basename "${SHELL:-}")"
 
-    case "$shell_name" in
-        zsh)
-            files+=("$HOME/.zshrc")
-            ;;
-        bash)
-            if [[ "$(uname -s)" == "Darwin" && -f "$HOME/.bash_profile" ]]; then
-                files+=("$HOME/.bash_profile")
-            else
-                files+=("$HOME/.bashrc")
-            fi
-            ;;
-        *)
-            [[ -f "$HOME/.zshrc" ]] && files+=("$HOME/.zshrc")
-            [[ -f "$HOME/.bashrc" ]] && files+=("$HOME/.bashrc")
-            if [[ ${#files[@]} -eq 0 ]]; then
-                files+=("$HOME/.bashrc")
-            fi
-            ;;
-    esac
+    if command -v zsh >/dev/null 2>&1; then
+        files+=("$HOME/.zshrc")
+    fi
+
+    if command -v bash >/dev/null 2>&1; then
+        if [[ "$(uname -s)" == "Darwin" && -f "$HOME/.bash_profile" ]]; then
+            files+=("$HOME/.bash_profile")
+        else
+            files+=("$HOME/.bashrc")
+        fi
+    fi
+
+    if [[ ${#files[@]} -eq 0 ]]; then
+        files+=("$HOME/.bashrc")
+    fi
+
     printf '%s\n' "${files[@]}"
 }
 
